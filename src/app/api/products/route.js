@@ -16,3 +16,19 @@ export async function GET() {
 }
 
 
+
+export async function POST(request){
+    const payload = await request.json()
+    await mongoose.connect(connectionString)
+    let Product =new product(payload)
+    // let Product = new product({
+    //     name : "redmi 8",
+    //     category: "mobile",
+    //     color: "white",
+    //     company: "MI",
+    //     price: "6466",
+    // });
+    const result = await Product.save()
+    return NextResponse.json({result, success:true})
+}
+
