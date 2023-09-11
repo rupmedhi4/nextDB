@@ -23,3 +23,11 @@
    
     list-style: none;
 }
+.list{
+    font-weight: bold;
+    border-bottom: 2px solid red;
+    
+}
+.listStyle{
+    text-align: justify;
+}
