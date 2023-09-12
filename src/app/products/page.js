@@ -1,10 +1,12 @@
 import style from '@/app/style.module.css'
 import Link from 'next/link';
+import DeleteBtn from '../components/DeleteBtn';
+
 
 export default async function page() {
 
     const getProducts = async () => {
-        let data = await fetch("http://localhost:3000/api/products")
+        let data = await fetch("http://localhost:3000/api/products", {cache:"no-cache"})
         data = await data.json();
         if (data.success) {
             return data.result
@@ -14,7 +16,6 @@ export default async function page() {
     }
 
     const products = await getProducts()
-    console.log(products);
 
     return (
         <div >
@@ -29,12 +30,16 @@ export default async function page() {
            <div className={style.main_div}>
             {products.map((data)=>(
                 <ul key= {data._id} className={`${style.ul} ${style.listStyle}`}>
-                    <li className={style.li}>{data.name}</li>
-                    <li className={style.li}>{data.price}</li>
-                    <li className={style.li}>{data.company}</li>
-                    <li className={style.li}>{data.color}</li>
-                    <li className={style.li}>{data.category}</li>
+                    <li>{data.name}</li>
+                    <li >{data.price}</li>
+                    <li >{data.company}</li>
+                    <li >{data.color}</li>
+                    <li >{data.category}</li>
+
                     <Link href={`/products/${data._id}`}>Edit data</Link>
+                   <DeleteBtn id={data._id}/>
+                    
+                    
                 </ul>
             ))}
            </div>

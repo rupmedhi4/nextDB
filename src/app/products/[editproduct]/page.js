@@ -13,20 +13,25 @@ export default function page({params}) {
 
   const router = useRouter()
 
-useEffect(()=>{
-getProductsDetsils()
-},[])
+  useEffect(() => {
+    console.log('Component mounted'); 
+    if (params.editproduct) {
+      getProductsDetsils();
+    }
+  }, [params.editproduct]); 
 
 const getProductsDetsils = async()=>{
   let productData=await fetch(`http://localhost:3000/api/products/${params.editproduct}`);
   productData = await productData.json()
- if(productData.sucess){
+  console.log(productData);
+ if(productData.success){
   setName(productData.result.name)
   setprice(productData.result.price)
   setcolor(productData.result.color)
   setcompany(productData.result.company)
   setcategory(productData.result.category)
  };
+
 }
 
   const updateProduct = async()=>{
@@ -43,6 +48,8 @@ const getProductsDetsils = async()=>{
     router.push('/products')
 
   }
+
+  
   return (
     <div>
       <h1>update product</h1>
@@ -51,6 +58,7 @@ const getProductsDetsils = async()=>{
       <input type="text" value={color} onChange={(e)=>setcolor(e.target.value)} placeholder='enter product color' className={style.input} />
       <input type="text" value={company} onChange={(e)=>setcompany(e.target.value)} placeholder='enter product company' className={style.input} />
       <input type="text" value={category} onChange={(e)=>setcategory(e.target.value)} placeholder='enter product category' className={style.input} />
+
       <button onClick={updateProduct}  className={style.btn}>update product</button>
     </div>
   )

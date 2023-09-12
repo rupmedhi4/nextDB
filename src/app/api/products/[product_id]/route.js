@@ -20,6 +20,15 @@ export async function GET(request, content) {
     const record = { _id: productId }
     await mongoose.connect(connectionString)
     const result = await product.findById(record)
-    return NextResponse.json({ result, sucess: true })
+    return NextResponse.json({ result, success: true })
+
+}
+
+export async function DELETE(request, content){
+    const productId = content.params.product_id
+    const record = { _id: productId }
+    await mongoose.connect(connectionString)
+    const result = await product.deleteOne(record)
+    return NextResponse.json({result, success: true })
 
 }
