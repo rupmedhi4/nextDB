@@ -1,4 +1,5 @@
 import style from '@/app/style.module.css'
+import Link from 'next/link';
 
 export default async function page() {
 
@@ -25,15 +26,15 @@ export default async function page() {
                 <li className={style.list}>color</li>
                 <li className={style.list}>category</li>
             </ul>
-           <div>
+           <div className={style.main_div}>
             {products.map((data)=>(
                 <ul key= {data._id} className={`${style.ul} ${style.listStyle}`}>
-                    <li>{data.name}</li>
-                    <li>{data.price}</li>
-                    <li>{data.company}</li>
-                    <li>{data.color}</li>
-                    <li>{data.category}</li>
-
+                    <li className={style.li}>{data.name}</li>
+                    <li className={style.li}>{data.price}</li>
+                    <li className={style.li}>{data.company}</li>
+                    <li className={style.li}>{data.color}</li>
+                    <li className={style.li}>{data.category}</li>
+                    <Link href={`/products/${data._id}`}>Edit data</Link>
                 </ul>
             ))}
            </div>

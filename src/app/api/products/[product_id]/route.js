@@ -10,8 +10,16 @@ export async function PUT(request, content) {
     const payload = await request.json()
     await mongoose.connect(connectionString)
     const result = await product.findOneAndUpdate(filter, payload)
+    return NextResponse.json({ result, sucess: true })
 
+}
 
+export async function GET(request, content) {
+
+    const productId = content.params.product_id
+    const record = { _id: productId }
+    await mongoose.connect(connectionString)
+    const result = await product.findById(record)
     return NextResponse.json({ result, sucess: true })
 
 }

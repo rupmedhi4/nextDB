@@ -11,7 +11,7 @@ export async function GET() {
         console.log(data);
         return NextResponse.json({ result: data, success:true });
     } catch (err) {
-        alert(err);
+       console.log(err);
         return NextResponse.json({ result: false, error: "Database connection failed", success:false}, { status: 500 });
     }
 }

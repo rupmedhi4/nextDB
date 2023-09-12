@@ -19,8 +19,8 @@
 }
 .ul{
     display: flex;
-    justify-content: space-evenly;
-   
+   gap: 10rem;
+   text-align: justify;
     list-style: none;
 }
 .list{
@@ -29,5 +29,21 @@
     
 }
 .listStyle{
-    text-align: justify;
+  text-align: left;
+}
+
+.main_div{
+    background-color: rgb(208, 180, 233);
+    padding: 1rem;
+    color: rgb(13, 13, 13);
+}
+.li{
+    align-items: left;
+    max-width: 3.5rem;
+}
+
+.ul_list{
+    display: flex;
+    justify-content:space-evenly;
+    
 }
